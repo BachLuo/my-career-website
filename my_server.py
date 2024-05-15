@@ -1,13 +1,16 @@
-from flask import Flask
+from flask import Flask, request, render_template
 from flask_cors import CORS, cross_origin
-from flask import request
 
 #Khởi tạo  Falsk Sever Backend
-app = Flask(__name__)
+app = Flask(__name__,template_folder='template')
 
 #Apply Flask CORS
 CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
+@app.route('/')
+
+def home():
+    return render_template('home.html')
 
 @app.route('/add',methods=['POST','GET'])
 @cross_origin(origins='*')
